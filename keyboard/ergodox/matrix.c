@@ -71,7 +71,7 @@ void matrix_init(void)
     // initialize row and col
     init_ergodox();
     mcp23018_status = init_mcp23018();
-    ergodox_blink_all_leds();
+    //ergodox_blink_all_leds();
     unselect_rows();
     init_cols();
 
@@ -99,7 +99,7 @@ uint8_t matrix_scan(void)
                 print("left side not responding\n");
             } else {
                 print("left side attached\n");
-                ergodox_blink_all_leds();
+                //ergodox_blink_all_leds();
             }
         }
     }
@@ -118,53 +118,53 @@ uint8_t matrix_scan(void)
     }
 #endif
 
-#ifdef KEYMAP_CUB
-    uint8_t layer = biton32(layer_state);
-
-    ergodox_board_led_off();
-    ergodox_left_led_1_off();
-    ergodox_left_led_2_off();
-    ergodox_left_led_3_off();
-    switch (layer) {
-        case 1:
-            // all
-            ergodox_left_led_1_on();
-            ergodox_left_led_2_on();
-            ergodox_left_led_3_on();
-            break;
-        case 2:
-            // blue
-            ergodox_left_led_2_on();
-            break;
-        case 8:
-            // blue and green
-            ergodox_left_led_2_on();
-            // break missed intentionally
-        case 3:
-            // green
-            ergodox_left_led_3_on();
-            break;
-        case 6:
-            ergodox_board_led_on();
-            // break missed intentionally
-        case 4:
-        case 5:
-        case 7:
-            // white
-            ergodox_left_led_1_on();
-            break;
-        case 9:
-            // white+green
-            ergodox_left_led_1_on();
-            ergodox_left_led_3_on();
-            break;
-        default:
-            // none
-            break;
-    }
-
-    mcp23018_status = ergodox_left_leds_update();
-#endif
+//#ifdef KEYMAP_CUB
+//    uint8_t layer = biton32(layer_state);
+//
+//    ergodox_board_led_off();
+//    ergodox_left_led_1_off();
+//    ergodox_left_led_2_off();
+//    ergodox_left_led_3_off();
+//    switch (layer) {
+//        case 1:
+//            // all
+//            ergodox_left_led_1_on();
+//            ergodox_left_led_2_on();
+//            ergodox_left_led_3_on();
+//            break;
+//        case 2:
+//            // blue
+//            ergodox_left_led_2_on();
+//            break;
+//        case 8:
+//            // blue and green
+//            ergodox_left_led_2_on();
+//            // break missed intentionally
+//        case 3:
+//            // green
+//            ergodox_left_led_3_on();
+//            break;
+//        case 6:
+//            ergodox_board_led_on();
+//            // break missed intentionally
+//        case 4:
+//        case 5:
+//        case 7:
+//            // white
+//            ergodox_left_led_1_on();
+//            break;
+//        case 9:
+//            // white+green
+//            ergodox_left_led_1_on();
+//            ergodox_left_led_3_on();
+//            break;
+//        default:
+//            // none
+//            break;
+//    }
+//
+//    mcp23018_status = ergodox_left_leds_update();
+//#endif
 
     for (uint8_t i = 0; i < MATRIX_ROWS; i++) {
         select_row(i);
@@ -299,7 +299,7 @@ static void unselect_rows(void)
         mcp23018_status = i2c_start(I2C_ADDR_WRITE);    if (mcp23018_status) goto out;
         mcp23018_status = i2c_write(GPIOA);             if (mcp23018_status) goto out;
         mcp23018_status = i2c_write( 0xFF
-                              & ~(ergodox_left_led_3<<LEFT_LED_3_SHIFT)
+                              //& ~(ergodox_left_led_3<<LEFT_LED_3_SHIFT)
                           );                            if (mcp23018_status) goto out;
     out:
         i2c_stop();
@@ -327,7 +327,7 @@ static void select_row(uint8_t row)
             mcp23018_status = i2c_start(I2C_ADDR_WRITE);        if (mcp23018_status) goto out;
             mcp23018_status = i2c_write(GPIOA);                 if (mcp23018_status) goto out;
             mcp23018_status = i2c_write( 0xFF & ~(1<<row)
-                                  & ~(ergodox_left_led_3<<LEFT_LED_3_SHIFT)
+                               //   & ~(ergodox_left_led_3<<LEFT_LED_3_SHIFT)
                               );                                if (mcp23018_status) goto out;
         out:
             i2c_stop();
