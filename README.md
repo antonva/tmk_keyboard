@@ -4,6 +4,14 @@ This repository includes keyboard and converter firmware projects built with [`t
 
 The latest source code is available here: <http://github.com/tmk/tmk_keyboard>
 
+This fork aims to get the Ergodox up to date with the latest revisions of the TMK firmware. The tmk_core repo is currently many commits behind the tmk_keyboard repo which is why tmk_keyboard was forked. Files from cub-uanic's repo were moved into ```./keyboards/ergodox/``` <https://github.com/cub-uanic/tmk_keyboard>
+
+Roadmap:
+- [x] Get ergodox firmware compiling with GCC 7.1.1 and latest tmk_keyboard version
+  - The problems I encountered seemed to stem from LED light logic which is all commented out at the moment.
+  - [ ] Reintroduce working LED logic
+  - [ ] Complete the keymap framework refactoring for ergodox.
+- [ ] Refactor keymap files to be up to spec with new keymap framework specifications
 
 Updates
 -------
