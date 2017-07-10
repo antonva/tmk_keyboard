@@ -23,6 +23,8 @@ Most used files are located at
 <https://github.com/benblazak/ergodox-firmware/tree/partial-rewrite/firmware/keyboard/ergodox/controller>
 
 */
+#ifndef ERGODOX_H
+#define ERGODOX_H
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -63,21 +65,21 @@ extern bool ergodox_left_led_1;         // left top
 extern bool ergodox_left_led_2;         // left middle
 extern bool ergodox_left_led_3;         // left bottom
 
-inline void ergodox_board_led_on(void)      { DDRD |=  (1<<6); PORTD |=  (1<<6); }
-inline void ergodox_right_led_1_on(void)    { DDRB |=  (1<<5); PORTB |=  (1<<5); }
-inline void ergodox_right_led_2_on(void)    { DDRB |=  (1<<6); PORTB |=  (1<<6); }
-inline void ergodox_right_led_3_on(void)    { DDRB |=  (1<<7); PORTB |=  (1<<7); }
-inline void ergodox_left_led_1_on(void)     { ergodox_left_led_1 = 1; }
-inline void ergodox_left_led_2_on(void)     { ergodox_left_led_2 = 1; }
-inline void ergodox_left_led_3_on(void)     { ergodox_left_led_3 = 1; }
+static inline void ergodox_board_led_on(void)      { DDRD |=  (1<<6); PORTD |=  (1<<6); }
+static inline void ergodox_right_led_1_on(void)    { DDRB |=  (1<<5); PORTB |=  (1<<5); }
+static inline void ergodox_right_led_2_on(void)    { DDRB |=  (1<<6); PORTB |=  (1<<6); }
+static inline void ergodox_right_led_3_on(void)    { DDRB |=  (1<<7); PORTB |=  (1<<7); }
+static inline void ergodox_left_led_1_on(void)     { ergodox_left_led_1 = 1; }
+static inline void ergodox_left_led_2_on(void)     { ergodox_left_led_2 = 1; }
+static inline void ergodox_left_led_3_on(void)     { ergodox_left_led_3 = 1; }
 
-inline void ergodox_board_led_off(void)     { DDRD &= ~(1<<6); PORTD &= ~(1<<6); }
-inline void ergodox_right_led_1_off(void)   { DDRB &= ~(1<<5); PORTB &= ~(1<<5); }
-inline void ergodox_right_led_2_off(void)   { DDRB &= ~(1<<6); PORTB &= ~(1<<6); }
-inline void ergodox_right_led_3_off(void)   { DDRB &= ~(1<<7); PORTB &= ~(1<<7); }
-inline void ergodox_left_led_1_off(void)    { ergodox_left_led_1 = 0; }
-inline void ergodox_left_led_2_off(void)    { ergodox_left_led_2 = 0; }
-inline void ergodox_left_led_3_off(void)    { ergodox_left_led_3 = 0; }
+static inline void ergodox_board_led_off(void)     { DDRD &= ~(1<<6); PORTD &= ~(1<<6); }
+static inline void ergodox_right_led_1_off(void)   { DDRB &= ~(1<<5); PORTB &= ~(1<<5); }
+static inline void ergodox_right_led_2_off(void)   { DDRB &= ~(1<<6); PORTB &= ~(1<<6); }
+static inline void ergodox_right_led_3_off(void)   { DDRB &= ~(1<<7); PORTB &= ~(1<<7); }
+static inline void ergodox_left_led_1_off(void)    { ergodox_left_led_1 = 0; }
+static inline void ergodox_left_led_2_off(void)    { ergodox_left_led_2 = 0; }
+static inline void ergodox_left_led_3_off(void)    { ergodox_left_led_3 = 0; }
 
 inline void ergodox_led_all_on(void)
 {
@@ -114,3 +116,4 @@ inline void ergodox_led_all_set(uint8_t n)
     ergodox_right_led_3_set(n);
 }
 
+#endif /* ERGODOX_H */
